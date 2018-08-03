@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Game from './containers/Game'
-import Header from './containers/Header'
+import Game from '../../containers/Game'
+import Header from '../../containers/Header'
 
 import './App.css';
 

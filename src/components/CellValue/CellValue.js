@@ -11,6 +11,7 @@ class CellValue extends PureComponent {
 		let img, cls;
 		switch(this.props.value) {
 			case 0:
+			default:
 				img = empty;
 				cls = 'empty';
 				break;
@@ -24,7 +25,7 @@ class CellValue extends PureComponent {
 				break;
 		}
 
-		return <img className={"cell-value "+cls} src={img} />;
+		return <img alt={cls} className={"cell-value "+cls} src={img} />;
 	}
 }
 

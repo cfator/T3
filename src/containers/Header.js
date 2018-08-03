@@ -1,11 +1,15 @@
-import React from 'react'
 import { connect } from 'react-redux'
 
 import Header from '../components/Header/Header'
-import { startGame } from '../actions/StartGame'
+import { startNewGame } from '../actions/index'
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	onClick: () => dispatch(startGame())
+	startNewGame: () => dispatch(startNewGame())
 });
 
-export default connect(mapDispatchToProps)(Header);
+const mapStateToProps = state => ({});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Header);

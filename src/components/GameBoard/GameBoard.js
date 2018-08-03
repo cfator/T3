@@ -6,11 +6,8 @@ import Status from '../Status/Status'
 
 import './GameBoard.css';
 
-const GameBoard = ({ dispatch }) => {
-	var cells = [[1,0,0,0],[0,1,0,-1],[0,-1,1,0],[-1,0,0,0]];
-	var len = 4;
-	var dim = 100/len;
-	var status = 'X make your next move.';
+const GameBoard = ({ cells, status, cellClick }) => {
+	var dim = 100/cells.length;
 
 	return (
 		<div className="game-board">
@@ -18,7 +15,7 @@ const GameBoard = ({ dispatch }) => {
 			{cells.map((row, r) =>
 				<div key={r} className='row'>
 					{row.map((cellValue, c) =>
-						<div key={c} style={{width: dim+'%'}} className="cell">
+						<div key={c} style={{width: dim+'%'}} className="cell" onClick={() => cellClick(r,c)}>
 							<CellValue value={cellValue} />
 						</div>
 					)}
