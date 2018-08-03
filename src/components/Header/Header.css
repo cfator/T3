@@ -2,12 +2,12 @@
 	font-size: 20px;
 	background-color: #222;
 	height: 28px;
-	padding: 20px 10%;
+	padding: 20px 20%;
 	color: white;
 
 	display: flex;
 	justify-content: space-between;
-	min-width: 440px;
+	min-width: 240px;
 }
 
 .title {

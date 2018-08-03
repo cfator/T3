@@ -61,7 +61,6 @@ const gamePlay = (state = [], action) => {
 
 			// check for the win
 			const gameResult = winCheck(nextCellsState, action.r, action.c, state.moveNumber, currentMove);
-debugger
 			if(gameResult === undefined) {
 				// we have a draw
 				return {
@@ -115,4 +114,4 @@ debugger
 	}
 };
 
-export {gamePlay, initialState, playerMarkValues};
+export { gamePlay, initialState, playerMarkValues };

@@ -1,12 +1,14 @@
 .game-board {
 	margin-top: 20px;
-	width: 50%;
+	width: 64%;
 	background-color: #fff;
 	color: #444;
+	user-select: none;
 }
 
 .row {
 	border-top: 1px solid #ccc;
+	line-height: 10px;
 }
 
 .row:last-child {
