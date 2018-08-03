@@ -1,27 +1,29 @@
 import React, {PureComponent} from 'react'
 
+import { playerMarkValues } from '../../reducers'
+
 import './CellValue.css';
 
 import x from '../../images/x.svg';
 import o from '../../images/o.svg';
-import empty from '../../images/empty.svg';
+import blank from '../../images/blank.svg';
 
 class CellValue extends PureComponent {
 	render() {
 		let img, cls;
 		switch(this.props.value) {
-			case 0:
-			default:
-				img = empty;
-				cls = 'empty';
-				break;
-			case -1:
+			case playerMarkValues.X:
 				img = x;
 				cls = 'x';
 				break;
-			case 1:
+			case playerMarkValues.O:
 				img = o;
 				cls = 'o';
+				break;
+			case playerMarkValues.blank:
+			default:
+				img = blank;
+				cls = 'blank';
 				break;
 		}
 

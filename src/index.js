@@ -5,20 +5,12 @@ import ReactDOM from 'react-dom';
 
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
-import rootReducer from './reducers'
+import {gamePlay, initialState} from './reducers'
 import strings from './strings';
 
 import './index.css';
 
-const store = createStore(
-	rootReducer,
-	// default state
-	{
-		cells:  [],
-		status: strings.START_NEW_GAME,
-		moveNumber: 0
-	}
-);
+const store = createStore(gamePlay, initialState);
 
 ReactDOM.render(
 	<Provider store={store}>
