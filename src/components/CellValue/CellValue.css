@@ -1,0 +1,7 @@
+.cell-value {
+	margin: 15%;
+}
+
+.x, .o {
+	cursor: not-allowed;
+}

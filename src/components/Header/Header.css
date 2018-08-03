@@ -1,0 +1,21 @@
+.header {
+	font-size: 20px;
+	background-color: #222;
+	height: 28px;
+	padding: 20px 10%;
+	color: white;
+
+	display: flex;
+	justify-content: space-between;
+	min-width: 440px;
+}
+
+.title {
+	line-height: 28px;
+}
+
+.start-button {
+	font-size: 14px;
+	border-radius: 4px;
+}
+
