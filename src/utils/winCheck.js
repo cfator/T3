@@ -17,9 +17,9 @@ const winCheck = (cells, moveRowI, moveColI, moveNum) => {
 
 	// col check
 	for(let i = 0; i < cellsWide; i++) {
-		if(cells[moveRowI][i] != playerMoveValue) {
+		if(cells[moveRowI][i] !== playerMoveValue) {
 			break;
-		} else if(i == cellsWide - 1) {
+		} else if(i === cellsWide - 1) {
 			return true;
 		}
 	}
@@ -28,7 +28,7 @@ const winCheck = (cells, moveRowI, moveColI, moveNum) => {
 	for(let i = 0; i < cellsWide; i++) {
 		if(cells[i][moveColI] !== playerMoveValue)
 			break;
-		if(i == cellsWide-1) {
+		if(i === cellsWide-1) {
 			return true;
 		}
 	}
@@ -36,7 +36,7 @@ const winCheck = (cells, moveRowI, moveColI, moveNum) => {
 	// diagonal check
 	if(moveRowI === moveColI) {
 		for(let i = 0; i < cellsWide; i++) {
-			if(cells[i][i] != playerMoveValue) {
+			if(cells[i][i] !== playerMoveValue) {
 				break;
 			} else if(i === cellsWide - 1) {
 				return true;

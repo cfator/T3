@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+// @improvement would be to create aliases for top level folders via webpack config
 import CellValue from '../CellValue/CellValue'
 import Status from '../Status/Status'
 

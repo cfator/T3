@@ -4,7 +4,7 @@ export const cellClick = (r, c) => ({
 	c
 });
 
-export const startNewGame = text => ({
+export const startNewGame = (cellsWide) => ({
 	type: 'START_NEW_GAME',
-	text
+	cellsWide: cellsWide
 });

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import strings from '../../strings';
+import strings from '../../utils/strings';
 
 import './Header.css';
 

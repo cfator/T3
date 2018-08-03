@@ -1,6 +1,7 @@
-import strings from '../strings';
-import winCheck from '../winCheck';
+import strings from '../utils/strings';
+import winCheck from '../utils/winCheck';
 
+// @improvement would be to extend the cells state such that cells can be highlighted when a win is made
 const initialState = {
 	cells:  [],
 	status: strings.START_NEW_GAME,
@@ -23,7 +24,7 @@ const setUpGameGrid = (cellsWide) => {
 	return grid;
 };
 
-/* validate that n is a valid positive int between 2 and 42 */
+/* validate that n is a valid positive int between 2 and 16 */
 const validateCellsWideInput = (n) => {
 	let inRange = (n >= 2 && n <= 16);
 	let validPosInt = 0 === n % (!isNaN(parseFloat(n)) && 0 <= ~~n);
@@ -35,12 +36,14 @@ const whosMove = (moveNum) => {
 	return (moveNum % 2) ? { name: 'X', value: playerMarkValues.X } : { name: 'O', value: playerMarkValues.O };
 };
 
-const gamePlay = (state = [], action) => {
+const gamePlay = (state, action) => {
 	switch (action.type) {
 		case 'CELL_CLICK':
 			const currentMove = whosMove(state.moveNumber);
 			const nextMoveNum = state.moveNumber+1;
 			const whosMoveNext = whosMove(nextMoveNum);
+
+
 
 			// some validation
 			const target = state.cells[action.r][action.c];
@@ -48,7 +51,7 @@ const gamePlay = (state = [], action) => {
 				// cell has already been marked by a prior move or game was won, do nothing
 				return state;
 			} else if(target === undefined) {
-				// cell is out of bounds
+				// cell is out of bounds, we have an error state
 				return {
 					...state,
 					status: strings.OPPS
@@ -75,19 +78,31 @@ const gamePlay = (state = [], action) => {
 					status: strings.PLAYER_WINS(currentMove.name),
 					cells: nextCellsState
 				}
+			} else {
+				// move was valid and did not result in a win
+				return {
+					moveNumber: nextMoveNum,
+					status: (nextMoveNum % 2) ? strings.PLAYER_UP(whosMoveNext.name) : strings.PLAYER_UP(whosMoveNext.name),
+					cells: nextCellsState
+				};
 			}
-
-			// move was valid and did not result in a win
-			return {
-				moveNumber: nextMoveNum,
-				status: (nextMoveNum % 2) ? strings.PLAYER_UP(whosMoveNext.name) : strings.PLAYER_UP(whosMoveNext.name),
-				cells: nextCellsState
-			};
-			break;
 		case 'START_NEW_GAME':
 			let cellsWide;
 			let prompt = strings.CELL_COUNT_PROMPT;
 			let firstPrompt = true;
+
+			// @improvement would be to use component driven modals instead of window.confirm and window.alert
+
+			// if action already has cellsWide then don't prompt the user
+			if(typeof(action.cellsWide) === 'number') {
+				return {
+					cells: setUpGameGrid(action.cellsWide),
+					status: strings.PLAYER_UP(whosMove(0).name),
+					moveNumber: 0
+				};
+			}
+
+			// @improvement refactor here to include area below in test coverage, currently is skipped when cellsWide is supplied in action
 
 			// validate and prompt if a game is in progress
 			if(state.moveNumber !== -1) {
@@ -98,19 +113,18 @@ const gamePlay = (state = [], action) => {
 
 			// keep asking until we get a valid number
 			while(!validateCellsWideInput(cellsWide)) {
-				cellsWide = parseInt(window.prompt(firstPrompt ? prompt : strings.CELL_COUNT_ERROR + prompt));
+				cellsWide = parseInt(window.prompt(firstPrompt ? prompt : strings.CELL_COUNT_ERROR + prompt), 10);
 				firstPrompt = false;
 			}
 
+			// all good start a new game
 			return {
 				cells: setUpGameGrid(cellsWide),
 				status: strings.PLAYER_UP(whosMove(0).name),
 				moveNumber: 0
 			};
-			break;
 		default:
-			return state;
-			break;
+			return initialState;
 	}
 };
 

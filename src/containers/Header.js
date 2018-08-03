@@ -4,7 +4,7 @@ import Header from '../components/Header/Header'
 import { startNewGame } from '../actions/index'
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	startNewGame: () => dispatch(startNewGame())
+	startNewGame: (cellsWide) => dispatch(startNewGame(cellsWide))
 });
 
 const mapStateToProps = state => ({});

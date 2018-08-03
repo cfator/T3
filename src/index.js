@@ -4,10 +4,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './components/App/App';
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './utils/registerServiceWorker';
 import {gamePlay, initialState} from './reducers'
-import strings from './strings';
 
+// @improvement would be to introduce sass
 import './index.css';
 
 const store = createStore(gamePlay, initialState);
