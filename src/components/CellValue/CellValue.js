@@ -2,9 +2,9 @@ import React, {PureComponent} from 'react'
 
 import './CellValue.css';
 
-import x from '../../imgs/x.svg';
-import o from '../../imgs/o.svg';
-import empty from '../../imgs/empty.svg';
+import x from '../../images/x.svg';
+import o from '../../images/o.svg';
+import empty from '../../images/empty.svg';
 
 class CellValue extends PureComponent {
 	render() {

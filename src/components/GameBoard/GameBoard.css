@@ -17,12 +17,12 @@
 	display: inline-block;
 	background-color: #fff;
 	border-left: 1px solid #ccc;
-	margin: 0 -1px;
+	margin-left: -1px;
 	height: 100%;
 	text-align: center;
 }
 
 .cell:last-child {
 	border-right: 1px solid #ccc;
-	padding-right: 2px;
+	margin-right: -1px;
 }
