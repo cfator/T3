@@ -43,8 +43,6 @@ const gamePlay = (state, action) => {
 			const nextMoveNum = state.moveNumber+1;
 			const whosMoveNext = whosMove(nextMoveNum);
 
-
-
 			// some validation
 			const target = state.cells[action.r][action.c];
 			if(target !== 0 || state.moveNumber === -1) {
@@ -62,7 +60,7 @@ const gamePlay = (state, action) => {
 			let nextCellsState = state.cells.slice();
 			nextCellsState[action.r][action.c] = currentMove.value;
 
-			// check for the win
+			// check for the draw, win or continue
 			const gameResult = winCheck(nextCellsState, action.r, action.c, state.moveNumber, currentMove);
 			if(gameResult === undefined) {
 				// we have a draw
@@ -79,10 +77,10 @@ const gamePlay = (state, action) => {
 					cells: nextCellsState
 				}
 			} else {
-				// move was valid and did not result in a win
+				// move was valid and did not result in a win or draw, continue game
 				return {
 					moveNumber: nextMoveNum,
-					status: (nextMoveNum % 2) ? strings.PLAYER_UP(whosMoveNext.name) : strings.PLAYER_UP(whosMoveNext.name),
+					status: strings.PLAYER_UP(whosMoveNext.name),
 					cells: nextCellsState
 				};
 			}
